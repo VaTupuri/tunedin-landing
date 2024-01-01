@@ -2,7 +2,7 @@ import Link from 'next/link';
 import MobileMenu from './mobile-menu';
 import logo3 from '@/public/images/logo3.png';
 import Image from 'next/image';
-
+import Head from "next/head"
 export default function Header() {
   // Define logo size for mobile and desktop
   const logoSize = {
@@ -12,6 +12,13 @@ export default function Header() {
 
   return (
     <header className="absolute w-full z-10">
+      <Head>
+        <title>
+          TunedIn App
+        </title>
+        <meta name="description">
+        </meta>
+      </Head>
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
         <div className="flex items-center justify-between h-20">
           {/* Site branding */}

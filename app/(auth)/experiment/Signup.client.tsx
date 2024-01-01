@@ -3,7 +3,7 @@ import { MouseEvent, useEffect, useState, useCallback} from 'react';
 import { gapi } from 'gapi-script';
 import Link from 'next/link';
 import UserProfile from "../../../components/profile";
-import { auth } from '../../../firebase-config2'; // Adjust the path if necessary to correctly point to your firebase-config file
+import { auth } from '../../../firebase-config'; // Adjust the path if necessary to correctly point to your firebase-config file
 import { doc, arrayUnion, updateDoc, collection } from "@firebase/firestore";
 import { getAuth, createUserWithEmailAndPassword, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
 import { error } from 'console';

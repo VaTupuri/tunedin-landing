@@ -60,7 +60,7 @@ const AudioPlayerMedia: React.FC<AudioPlayerProps> = ({ url, style, title}) => {
                 },
                 // Add more options here if needed
             });
-
+            console.log("loading", url)
             wavesurfer.current.load(url);
 
             wavesurfer.current.on('play', () => setIsPlaying(true));

@@ -1,5 +1,6 @@
 import { initializeApp } from "firebase/app";
 import { getFirestore } from "@firebase/firestore"
+import { getAuth } from "@firebase/auth"
 
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -8,7 +9,7 @@ import { getFirestore } from "@firebase/firestore"
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
   apiKey: "AIzaSyDf9Oo0B2kc_6aHQibtbMUzgtDS8QXBH-0",
-  authDomain: "tunedin-c2d4f.firebaseapp.com",
+  authDomain: "tunedinapp.com",
   projectId: "tunedin-c2d4f",
   storageBucket: "tunedin-c2d4f.appspot.com",
   messagingSenderId: "370440719371",
@@ -19,4 +20,6 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig, "main");
 const db = getFirestore(app)
-export {db}
+const auth = getAuth(app)
+
+export {db, auth}

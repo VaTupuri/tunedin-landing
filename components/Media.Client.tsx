@@ -15,7 +15,21 @@ const MediaTab: React.FC<MediaTabProps> = ({ userEmail }) => {
     const [showSuccessMessage, setShowSuccessMessage] = useState(false);
     const [isGenerating, setIsGenerating] = useState(false);
     const [errorMessage, setErrorMessage] = useState('');
+    function getFormattedDate(daysAgo: number = 0): string {
+        const now = new Date();
+        now.setDate(now.getDate() - daysAgo);
+    
+        const year = now.getFullYear();
+        const month = (now.getMonth() + 1).toString().padStart(2, '0'); // Months are 0-indexed in JavaScript
+        const date = now.getDate().toString().padStart(2, '0');
+    
+        return `${year}${month}${date}`;
+    }
+    const today = getFormattedDate(0)
+    const yesterday = getFormattedDate(1)
+    const twodaysago = getFormattedDate(2)
 
+   
     const fetchAudioUrls = async () => {
         const storageRef = ref(storage);
         try {
@@ -23,7 +37,7 @@ const MediaTab: React.FC<MediaTabProps> = ({ userEmail }) => {
 
             const matchingItems = result.items.filter(itemRef => {
                 // Construct the expected pattern for the filename
-                if (itemRef.name.includes(userEmail)) {
+                if (itemRef.name.includes(userEmail) && (itemRef.name.includes(today) || itemRef.name.includes(yesterday) || itemRef.name.includes(twodaysago))) {
                     return itemRef
                 }
 
@@ -33,7 +47,20 @@ const MediaTab: React.FC<MediaTabProps> = ({ userEmail }) => {
             // console.log(result)
             const urlPromises = matchingItems.map(itemRef => getDownloadURL(itemRef));
             const urls = await Promise.all(urlPromises);
-            setAudioUrls(urls);
+            console.log(urls)
+            const url2 = ['', '', ''];
+
+            urls.forEach(url => {
+                if (url.includes(today)) {
+                    url2[0] = url;
+                } else if (url.includes(yesterday)) {
+                    url2[1] = url;
+                } else if (url.includes(twodaysago)) {
+                    url2[2] = url;
+                }
+            });
+            
+            setAudioUrls(url2);
         } catch (error) {
             console.error("Error fetching audio URLs:", error);
         }
@@ -105,10 +132,11 @@ const MediaTab: React.FC<MediaTabProps> = ({ userEmail }) => {
     };
 
     const renderAudioPlayerOrMessage = (urlIndex: number, title: string) => {
+        console.log(audioUrls[urlIndex], title)
         return (
             <div style={{ display: 'flex', alignItems: 'center', marginBottom: '20px' }}>
 
-                {audioUrls[urlIndex] ? (
+                {audioUrls[urlIndex] != '' && audioUrls[urlIndex] ? (
                     <AudioPlayer url={audioUrls[urlIndex]} title={title} />
                 ) : (
                     <div style={{ color: "black" }}>No audio exists for {title}</div>

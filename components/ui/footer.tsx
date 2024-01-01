@@ -1,7 +1,11 @@
 import React from 'react'
 import Link from 'next/link'
-
+export const metadata = {
+  title: 'TunedIn',
+  description: 'Personalized Audio Bytes',
+}
 export default function Footer() {
+  
   return (
     <footer>
       <div className="py-12 md:py-16"  data-aos="fade-up" data-aos-delay="100" >

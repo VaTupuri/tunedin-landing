@@ -6,7 +6,7 @@ export const metadata = {
 import UserProfile from "../../../components/profile";
 import Link from 'next/link'
 import { useState, useEffect, useCallback } from 'react';
-import { auth } from '../../../firebase-config2'; // Adjust the path if necessary
+import { auth } from '../../../firebase-config'; // Adjust the path if necessary
 import { signInWithEmailAndPassword, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
 import { useSearchParams, usePathname, useRouter} from 'next/navigation'
 

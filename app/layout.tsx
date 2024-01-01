@@ -22,6 +22,9 @@ const architects_daughter = Architects_Daughter({
 export const metadata = {
   title: 'TunedIn',
   description: 'Personalized Audio Bytes',
+  icons: {
+    icon: '/images/logo3.png'
+  }
 }
 
 export default function RootLayout({
