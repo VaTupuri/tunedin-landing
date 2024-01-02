@@ -17,11 +17,17 @@ type ProfileTabProps = {
 const UserProfile: React.FC<ProfileTabProps> = ({ userEmail }) => {
   const [activeTab, setActiveTab] = useState('Preferences');
   const [sidebarVisible, setSidebarVisible] = useState(true);
-  const router = useRouter()
+  const router = useRouter();
+  const isMobileView = window.innerWidth < 768;
   const toggleSidebar = () => {
     setSidebarVisible(!sidebarVisible);
   };
-
+  const handleTabClick = (tab: string) => {
+    setActiveTab(tab);
+    if (isMobileView) {
+      toggleSidebar(); // Toggle the sidebar when a tab is clicked
+    }
+  };
   const handleSignOut = () => {
     signOut(auth).then(() => {
       router.push("/")
@@ -52,10 +58,10 @@ const UserProfile: React.FC<ProfileTabProps> = ({ userEmail }) => {
         </div>
         <div className="white-bar-divider"></div>
         <nav className="mt-2">
-          <button className={`w-full text-left px-6 py-2 hover:bg-purple-600 ${activeTab === 'Preferences' ? 'bg-purple-700' : ''}`} onClick={() => setActiveTab('Preferences')}>
+          <button className={`w-full text-left px-6 py-2 hover:bg-purple-600 ${activeTab === 'Preferences' ? 'bg-purple-700' : ''}`} onClick={() => handleTabClick('Preferences')}>
             Preferences
           </button>
-          <button className={`w-full text-left px-6 py-2 hover:bg-purple-600 ${activeTab === 'Your Media' ? 'bg-purple-700' : ''}`} onClick={() => setActiveTab('Your Media')}>
+          <button className={`w-full text-left px-6 py-2 hover:bg-purple-600 ${activeTab === 'Your Media' ? 'bg-purple-700' : ''}`} onClick={() => handleTabClick('Your Media')}>
             Your Media
           </button>
         </nav>
