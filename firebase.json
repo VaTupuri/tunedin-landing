@@ -1,26 +1,16 @@
 {
-  "functions": [
-    {
-      "source": "functions",
-      "codebase": "default",
-      "ignore": [
-        "venv",
-        ".git",
-        "firebase-debug.log",
-        "firebase-debug.*.log"
-      ]
-    }
-  ],
-  "firestore": {
-    "rules": "firestore.rules",
-    "indexes": "firestore.indexes.json"
+  "functions": {
+    "source": "functions"
   },
   "hosting": {
-    "public": "out",
+    "source": "hosting",
     "ignore": [
       "firebase.json",
       "**/.*",
       "**/node_modules/**"
-    ]
+    ],
+    "frameworksBackend": {
+      "region": "us-east1"
+    }
   }
 }

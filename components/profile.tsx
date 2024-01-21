@@ -18,7 +18,7 @@ const UserProfile: React.FC<ProfileTabProps> = ({ userEmail }) => {
   const [activeTab, setActiveTab] = useState('Preferences');
   const [sidebarVisible, setSidebarVisible] = useState(true);
   const router = useRouter();
-  const isMobileView = window.innerWidth < 768;
+  const isMobileView = false;
   const toggleSidebar = () => {
     setSidebarVisible(!sidebarVisible);
   };

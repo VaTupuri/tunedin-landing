@@ -3,6 +3,8 @@
 import dynamic from 'next/dynamic';
 import Features from '@/components/features'
 import Footer from '@/components/ui/footer'
+import { useEffect } from 'react';
+import { useSearchParams, usePathname, useRouter} from 'next/navigation'
 
 // Import the Hero component dynamically with SSR disabled
 const HeroClient = dynamic(() => import('@/components/Hero.client'), {
@@ -17,6 +19,8 @@ const Demo = dynamic(() => import('@/components/Demo.client'), {
 });
 
 export default function Home() {
+
+
   return (
     <>
       <div style={{
